@@ -1,8 +1,10 @@
 <?php
 
-namespace KataTemplate;
+declare(strict_types=1);
 
-class KataTemplate
+namespace Fractional;
+
+class Fractional
 {
     public function changeMe(): bool
     {

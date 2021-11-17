@@ -1,17 +1,74 @@
-# Base para hacer tests
+# Code Kata for Fractions
 
-Configuración básica para empezar a hacer una kata o aprender a hacer tests en los siguientes lenguajes:
+The idea of this code kata is to show separation of concerns in particular and other aspects
+like how to use code coverage tools like JaCoCo as well as Mutation Testing to support the development
+process.
 
-- PHP y PHPUnit
+This Kata defines the domain of working in a very simple domain which is basic school mathematics as
+given with fractions.
 
-# Configuración específica por lenguaje
+# Requirement Definition I
 
-## PHP
-1. Instalar [composer](https://getcomposer.org/) `curl -sS https://getcomposer.org/installer | php`
-2. `composer install` (estando en la carpeta php)
-3. `./vendor/bin/phpunit`
+## Overview
 
-## PHP
-[PHPUnit](https://phpunit.readthedocs.io/)
+We would like to calculate fraction operations which are defined in a file line by line.
 
-[Prophecy](https://github.com/phpspec/prophecy) para dobles de prueba
+## File Format
+
+The file can contain comment lines which are identified
+by `#` at the beginning of the line and have to be ignored.
+
+## Fraction Format
+
+A fraction starts by `{` and limited by `}`. The numerator separated by `/` from the denominator.
+The numerator as well as the denominator are integer values which can be prefixed by a `-` to define
+a negative fraction.
+
+- `{9/12}` This would define the fraction `9/12`.
+- `{-9/12}` This would define the fraction `-9/12`.
+- `{9/-12}` This would define the fraction `9/-12`.
+
+## Definition of the valid operations
+
+We define the following operations as valid on fractions:
+
+- `+` addition
+- `-` subtraction
+- `*` multiplication
+- `/` divide
+
+We need to be able to add, subtract, divide, multiply or create the power of a fraction.
+
+## Example for test
+
+- The following gives an example how to add two fractions: `{3/2}+{4/4}`
+- The following gives an example how to subtract two fractions: `{3/2}-{4/4}`
+- The following gives an example how to multiply two fractions: `{3/2}*{4/4}`
+- The following gives an example how to divide two fractions: `{3/2}/{4/4}`
+
+## Example Lines
+
+The following is an example of a line of operations on fractions:
+
+```
+{3/2}+{4/4}/{2/3}
+```
+
+and it should be handled to calculate the results of those
+fraction operations.
+
+# Requirement Definition II
+
+The change vs I.
+
+Introduce parenthesis like this:
+
+```
+( {3/2}+{4/4} ) / {2/3}
+```
+
+# Requirement Definition III
+
+The change vs I
+
+Integer => Long => BigInteger ?

@@ -5,6 +5,8 @@ default:
 dependencies:
 	composer install
 .PHONY: tests
+dump-autoload:
+	composer dump-autoload
 tests:
 	./vendor/bin/phpunit
 .PHONY: coverage
@@ -18,6 +20,8 @@ docker-build:
 	docker build -t php-docker-bootstrap .
 	@docker run --rm -v $(shell pwd):/opt/project php-docker-bootstrap make dependencies
 
+docker-dump-autoload:
+	@docker run --rm -v $(shell pwd):/opt/project php-docker-bootstrap make dump-autoload
 docker-tests:
 	@docker run --rm -v $(shell pwd):/opt/project php-docker-bootstrap make tests
 docker-coverage:
