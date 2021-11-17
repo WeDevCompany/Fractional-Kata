@@ -7,10 +7,12 @@ use PHPUnit\Framework\TestCase;
 
 class FractionalTest extends TestCase
 {
+
     /** @test */
-    public function change_me()
+    public function should_not_create_fraction_with_empty_string()
     {
-        $fractional = new Fractional();
-        $this->assertTrue($fractional->changeMe());
+        $this->expectException(\InvalidArgumentException::class);
+        $invalidFraction = '';
+        $fractional = new Fractional($invalidFraction);
     }
 }
