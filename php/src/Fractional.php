@@ -10,9 +10,10 @@ class Fractional
 {
     private const VALID_FRACTION_FORMAT = '/{[0-9]+\/[0-9]+}/m';
 
-    public static function fractionFromString(string $fraction)
+    public static function fractionFromString(string $fraction): self
     {
         self::throwExceptionIfInvalidFraction($fraction);
+        return new self();
     }
 
     private static function throwExceptionIfInvalidFraction(string $fraction)

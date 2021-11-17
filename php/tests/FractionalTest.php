@@ -24,7 +24,6 @@ class FractionalTest extends TestCase
      */
     public function createInvalidArguments(): iterator
     {
-        yield [null];
         yield [''];
         yield ['{'];
         yield ['}'];
@@ -42,6 +41,12 @@ class FractionalTest extends TestCase
         yield ['{-3/0}'];
         yield ['{-3/1}']; // TODO: review when this logic should work
         yield ['{3/-1}']; // TODO: review when this logic should work
+    }
 
+    /** @test */
+    public function should_create_a_fraction_with_positive_values()
+    {
+        $validFraction = '{1/2}';
+        $this->assertInstanceOf(Fractional::class, Fractional::fractionFromString($validFraction));
     }
 }
