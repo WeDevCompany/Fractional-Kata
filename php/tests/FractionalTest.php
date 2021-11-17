@@ -49,4 +49,12 @@ class FractionalTest extends TestCase
         $validFraction = '{1/2}';
         $this->assertInstanceOf(Fractional::class, Fractional::fractionFromString($validFraction));
     }
+
+    /** @test */
+    public function should_return_the_same_numerator()
+    {
+        $validFraction = '{1/2}';
+        $numerator = 1;
+        $this->assertEquals($numerator, Fractional::fractionFromString($validFraction)->numerator());
+    }
 }
