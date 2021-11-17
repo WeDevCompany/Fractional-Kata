@@ -24,4 +24,12 @@ class FractionalTest extends TestCase
         $invalidFraction = '{';
         Fractional::fractionFromString($invalidFraction);
     }
+
+    /** @test */
+    public function should_not_create_fraction_with_only_one_inverse_bracket()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $invalidFraction = '}';
+        Fractional::fractionFromString($invalidFraction);
+    }
 }

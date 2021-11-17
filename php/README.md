@@ -72,3 +72,7 @@ Introduce parenthesis like this:
 The change vs I
 
 Integer => Long => BigInteger ?
+
+# Possible regex
+
+(?:[1-9][0-9]_|0)(?:\/[1-9][0-9]_)?
