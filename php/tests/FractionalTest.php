@@ -32,4 +32,12 @@ class FractionalTest extends TestCase
         $invalidFraction = '}';
         Fractional::fractionFromString($invalidFraction);
     }
+
+    /** @test */
+    public function should_not_create_fraction_with_empty_pair_of_brackets()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $invalidFraction = '{}';
+        Fractional::fractionFromString($invalidFraction);
+    }
 }
