@@ -13,6 +13,6 @@ class FractionalTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $invalidFraction = '';
-        $fractional = new Fractional($invalidFraction);
+        $fractional = Fractional::fractionFromString($invalidFraction);
     }
 }
