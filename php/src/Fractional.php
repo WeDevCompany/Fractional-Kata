@@ -6,16 +6,6 @@ namespace Fractional;
 
 class Fractional
 {
-    public function changeMe(): bool
-    {
-        return true;
-    }
-
-    private function __construct(string $fraction)
-    {
-
-    }
-
     public static function fractionFromString(string $fraction)
     {
         if (empty($fraction)) {
