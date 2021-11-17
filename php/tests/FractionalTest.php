@@ -15,4 +15,6 @@ class FractionalTest extends TestCase
         $invalidFraction = '';
         $fractional = Fractional::fractionFromString($invalidFraction);
     }
+
+    //public function should_not_create_fraction_with_only_one_bracket()
 }
