@@ -24,6 +24,7 @@ class FractionalTest extends TestCase
      */
     public function createInvalidArguments(): iterator
     {
+        yield [null];
         yield [''];
         yield ['{'];
         yield ['}'];
