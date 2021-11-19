@@ -8,8 +8,8 @@ use InvalidArgumentException;
 
 class Fraction
 {
-    private const VALID_FRACTION_FORMAT = '/{[0-9]+\/[0-9]+}/m';
-    private const FRACTION_ELEMENTS = '/(?:[1-9][0-9]*|0)(?:\/[1-9][0-9]*)?/';
+    private const VALID_FRACTION_FORMAT = '/{-?[0-9]+\/-?[0-9]+}/m';
+    private const FRACTION_ELEMENTS = '/(?:-?[1-9][0-9]*|0)(?:\/-?[1-9][0-9]*)?/m';
     private const FRACTION_SEPARATOR = '/';
     private const NUMERATOR_INDEX = 0;
     private const DENOMINATOR_INDEX = 1;
@@ -30,6 +30,9 @@ class Fraction
         preg_match(self::FRACTION_ELEMENTS, $fraction, $matches);
         $numerator = self::cleanNumber($matches[self::FRACTION_FIRST_INDEX_OF], self::NUMERATOR_INDEX);
         $denominator = self::cleanNumber($matches[self::FRACTION_FIRST_INDEX_OF], self::DENOMINATOR_INDEX);
+        if ($numerator < 0 && $denominator < 0) {
+            throw new InvalidArgumentException('Both numerator and denominator can not be negative');
+        }
         return new self($numerator, $denominator);
     }
 
@@ -43,6 +46,9 @@ class Fraction
     private static function cleanNumber(string $fraction, int $fractionIndex): int
     {
         $fractionNumber = explode(self::FRACTION_SEPARATOR, $fraction);
+        if (count($fractionNumber) !== 2) {
+            throw new InvalidArgumentException('The Fraction has to be valid');
+        }
         return (int) $fractionNumber[$fractionIndex];
     }
 

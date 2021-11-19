@@ -39,8 +39,8 @@ class FractionalTest extends TestCase
         yield ['{0/0a}'];
         yield ['{0/a0}'];
         yield ['{-3/0}'];
-        yield ['{-3/1}']; // TODO: review when this logic should work
-        yield ['{3/-1}']; // TODO: review when this logic should work
+        yield ['{-1/-2}'];
+        yield ['{-01/-02}'];
     }
 
     /** @test */
@@ -65,6 +65,16 @@ class FractionalTest extends TestCase
         $validFraction = '{1/2}';
         $denominator = 2;
 
+        $this->assertEquals($denominator, Fraction::fractionFromString($validFraction)->denominator());
+    }
+
+    /** @test */
+    public function should_return_a_negative_numerator_and_positive_denominator()
+    {
+        $validFraction = '{-1/2}';
+        $numerator = -1;
+        $denominator = 2;
+        $this->assertEquals($numerator, Fraction::fractionFromString($validFraction)->numerator());
         $this->assertEquals($denominator, Fraction::fractionFromString($validFraction)->denominator());
     }
 }
