@@ -55,6 +55,7 @@ class FractionalTest extends TestCase
     {
         $validFraction = '{1/2}';
         $numerator = 1;
+
         $this->assertEquals($numerator, Fraction::fractionFromString($validFraction)->numerator());
     }
 
