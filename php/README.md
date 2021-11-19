@@ -57,6 +57,37 @@ The following is an example of a line of operations on fractions:
 and it should be handled to calculate the results of those
 fraction operations.
 
+👁️ It's important that if the command does contain parenthesis we have to
+prioritize the operations and if it doesn't we have to prioritize by operations.
+
+How would this be resolved
+```
+{3/2}+{4/4}/{2/3}
+```
+**First step**
+```
+{4/4}/{2/3}
+```
+
+**Second step**
+```
+{3/2}+RESULT_FROM_FIRST_OPERATION
+```
+
+## Other example
+```
+({3/2}+{4/4})/{2/3}
+```
+
+**First step**
+```
+({3/2}+{4/4})
+```
+**Second step**
+```
+RESULT_FROM_FIRST_OPERATION/{1/2}
+```
+
 # Requirement Definition II
 
 The change vs I.
@@ -64,7 +95,7 @@ The change vs I.
 Introduce parenthesis like this:
 
 ```
-( {3/2}+{4/4} ) / {2/3}
+( {3/2}+{4/4} )/{2/3}
 ```
 
 # Requirement Definition III
