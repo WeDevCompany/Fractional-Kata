@@ -68,7 +68,7 @@ class FractionalTest extends TestCase
      * @test
      * @dataProvider createValidArguments
      */
-    public function foo(string $validFraction, int $numerator, int $denominator)
+    public function should_create_fraction_with_valid_input(string $validFraction, int $numerator, int $denominator)
     {
         $this->assertEquals($numerator, Fraction::fractionFromString($validFraction)->numerator());
         $this->assertEquals($denominator, Fraction::fractionFromString($validFraction)->denominator());
