@@ -54,51 +54,6 @@ class FractionalTest extends TestCase
         yield ['{-1-1/3}'];
     }
 
-    /** @test */
-    public function should_create_a_fraction_with_positive_values()
-    {
-        $validFraction = '{1/2}';
-        $this->assertInstanceOf(Fraction::class, Fraction::fractionFromString($validFraction));
-    }
-
-    /** @test */
-    public function should_return_a_positive_numerator()
-    {
-        $validFraction = '{1/2}';
-        $numerator = 1;
-
-        $this->assertEquals($numerator, Fraction::fractionFromString($validFraction)->numerator());
-    }
-
-    /** @test */
-    public function should_return_a_positive_denominator()
-    {
-        $validFraction = '{1/2}';
-        $denominator = 2;
-
-        $this->assertEquals($denominator, Fraction::fractionFromString($validFraction)->denominator());
-    }
-
-    /** @test */
-    public function should_return_a_negative_numerator_and_positive_denominator()
-    {
-        $validFraction = '{-1/2}';
-        $numerator = -1;
-        $denominator = 2;
-        $this->assertEquals($numerator, Fraction::fractionFromString($validFraction)->numerator());
-        $this->assertEquals($denominator, Fraction::fractionFromString($validFraction)->denominator());
-    }
-
-    /** @test */
-    public function should_return_a_positive_numerator_and_negative_denominator()
-    {
-        $validFraction = '{1/-2}';
-        $numerator = 1;
-        $denominator = -2;
-        $this->assertEquals($numerator, Fraction::fractionFromString($validFraction)->numerator());
-        $this->assertEquals($denominator, Fraction::fractionFromString($validFraction)->denominator());
-    }
-
     /**
      * @return iterator<string>
      */
