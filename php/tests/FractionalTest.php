@@ -51,7 +51,7 @@ class FractionalTest extends TestCase
     }
 
     /** @test */
-    public function should_return_the_same_numerator()
+    public function should_return_a_positive_numerator()
     {
         $validFraction = '{1/2}';
         $numerator = 1;
