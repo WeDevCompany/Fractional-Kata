@@ -57,4 +57,13 @@ class FractionalTest extends TestCase
         $numerator = 1;
         $this->assertEquals($numerator, Fraction::fractionFromString($validFraction)->numerator());
     }
+
+    /** @test */
+    public function should_return_a_positive_denominator()
+    {
+        $validFraction = '{1/2}';
+        $denominator = 2;
+
+        $this->assertEquals($denominator, Fraction::fractionFromString($validFraction)->denominator());
+    }
 }

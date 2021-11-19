@@ -12,11 +12,13 @@ class Fraction
     private const FRACTION_ELEMENTS = '/(?:[1-9][0-9]*|0)(?:\/[1-9][0-9]*)?/';
     private const FRACTION_SEPARATOR = '/';
     private const NUMERATOR_INDEX = 0;
-    private $numerator;
+    private int $numerator;
+    private int $denominator;
 
-    private function __construct(int $numerator)
+    private function __construct(int $numerator, int $denominator)
     {
         $this->numerator = $numerator;
+        $this->denominator = $denominator;
     }
 
     public static function fractionFromString(string $fraction): self
@@ -25,7 +27,8 @@ class Fraction
         $matches = [];
         preg_match(self::FRACTION_ELEMENTS, $fraction, $matches);
         $numerator = self::cleanNumerator($matches[0]);
-        return new self($numerator);
+        $denominator = explode(self::FRACTION_SEPARATOR, $matches[0]);;
+        return new self($numerator, (int) $denominator[1]);
     }
 
     private static function throwExceptionIfInvalidFraction(string $fraction)
@@ -44,6 +47,11 @@ class Fraction
     public function numerator(): int
     {
         return $this->numerator;
+    }
+
+    public function denominator(): int
+    {
+        return $this->denominator;
     }
 
 }
