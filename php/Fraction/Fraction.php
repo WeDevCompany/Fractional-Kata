@@ -12,6 +12,8 @@ class Fraction
     private const FRACTION_ELEMENTS = '/(?:[1-9][0-9]*|0)(?:\/[1-9][0-9]*)?/';
     private const FRACTION_SEPARATOR = '/';
     private const NUMERATOR_INDEX = 0;
+    private const DENOMINATOR_INDEX = 1;
+    private const FRACTION_FIRST_INDEX_OF = 0;
     private int $numerator;
     private int $denominator;
 
@@ -26,9 +28,9 @@ class Fraction
         self::throwExceptionIfInvalidFraction($fraction);
         $matches = [];
         preg_match(self::FRACTION_ELEMENTS, $fraction, $matches);
-        $numerator = self::cleanNumerator($matches[0]);
-        $denominator = explode(self::FRACTION_SEPARATOR, $matches[0]);;
-        return new self($numerator, (int) $denominator[1]);
+        $numerator = self::cleanNumber($matches[self::FRACTION_FIRST_INDEX_OF], self::NUMERATOR_INDEX);
+        $denominator = self::cleanNumber($matches[self::FRACTION_FIRST_INDEX_OF], self::DENOMINATOR_INDEX);
+        return new self($numerator, $denominator);
     }
 
     private static function throwExceptionIfInvalidFraction(string $fraction)
@@ -38,10 +40,10 @@ class Fraction
         }
     }
 
-    private static function cleanNumerator(string $fraction): int
+    private static function cleanNumber(string $fraction, int $fractionIndex): int
     {
-        $numerator = explode(self::FRACTION_SEPARATOR, $fraction);
-        return (int) $numerator[self::NUMERATOR_INDEX];
+        $fractionNumber = explode(self::FRACTION_SEPARATOR, $fraction);
+        return (int) $fractionNumber[$fractionIndex];
     }
 
     public function numerator(): int
