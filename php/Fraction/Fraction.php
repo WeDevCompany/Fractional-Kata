@@ -36,6 +36,19 @@ class Fraction
         return new self($numerator, $denominator);
     }
 
+    /**
+     * @parameter $fractionList List<Fraction>
+     */
+    public static function sume(...$fractionList): self
+    {
+        $denominatorList = array_map(function ($fraction) { return $fraction->denominator;} , $fractionList);
+        $maxDenominator = max($denominatorList);
+
+        $numerator = array_reduce($fractionList, fn($acumulate, $currentFraction) => $acumulate += $currentFraction->numerator());
+
+        return new self($numerator, $maxDenominator);
+    }
+
     private static function throwExceptionIfInvalidFraction(string $fraction)
     {
         if (empty($fraction) || !preg_match(self::VALID_FRACTION_FORMAT ,$fraction)) {
@@ -82,6 +95,11 @@ class Fraction
     public function denominator(): int
     {
         return $this->denominator;
+    }
+
+    public function __toString(): string
+    {
+        return sprintf('{%d/%d}', $this->numerator, $this->denominator);
     }
 
 }
