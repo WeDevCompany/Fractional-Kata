@@ -9,8 +9,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Fractional\\": "src",
-      "Fractional\\Test\\": "tests"
+      "Fraction\\": "Fraction",
+      "Fraction\\Test\\": "tests"
     }
   }
 }

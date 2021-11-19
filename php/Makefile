@@ -40,6 +40,7 @@ define HELP
 	- make docker-tests\tRun the tests on docker
 	- make docker-coverage\tRun the code coverage
 	- make docker-mutants\t\tRun the infection mutant testing on docker
+	- make docker-dump-autoload\tRun composer dump-autoload
  Please execute "make <command>". Example make help
 
 endef

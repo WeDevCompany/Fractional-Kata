@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Fractional;
+namespace Fraction;
 
 use InvalidArgumentException;
 
-class Fractional
+class Fraction
 {
     private const VALID_FRACTION_FORMAT = '/{[0-9]+\/[0-9]+}/m';
     private $numerator;

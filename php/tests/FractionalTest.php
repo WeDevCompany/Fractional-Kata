@@ -1,8 +1,8 @@
 <?php
 
-namespace Fractional\Test;
+namespace Fraction\Test;
 
-use Fractional\Fractional;
+use Fraction\Fraction;
 use InvalidArgumentException;
 use Iterator;
 use PHPUnit\Framework\TestCase;
@@ -16,7 +16,7 @@ class FractionalTest extends TestCase
     public function should_not_create_fraction_with_invalid_input(string $invalidArguments)
     {
         $this->expectException(InvalidArgumentException::class);
-        Fractional::fractionFromString($invalidArguments);
+        Fraction::fractionFromString($invalidArguments);
     }
 
     /**
@@ -47,7 +47,7 @@ class FractionalTest extends TestCase
     public function should_create_a_fraction_with_positive_values()
     {
         $validFraction = '{1/2}';
-        $this->assertInstanceOf(Fractional::class, Fractional::fractionFromString($validFraction));
+        $this->assertInstanceOf(Fraction::class, Fraction::fractionFromString($validFraction));
     }
 
     /** @test */
@@ -55,6 +55,6 @@ class FractionalTest extends TestCase
     {
         $validFraction = '{1/2}';
         $numerator = 1;
-        $this->assertEquals($numerator, Fractional::fractionFromString($validFraction)->numerator());
+        $this->assertEquals($numerator, Fraction::fractionFromString($validFraction)->numerator());
     }
 }
