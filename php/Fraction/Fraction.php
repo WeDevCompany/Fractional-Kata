@@ -14,6 +14,8 @@ class Fraction
     private const NUMERATOR_INDEX = 0;
     private const DENOMINATOR_INDEX = 1;
     private const FRACTION_FIRST_INDEX_OF = 0;
+    private const INVALID_ZERO_VALUE = 0;
+    private const NUMBER_ELEMENTS_OF_FRACTIONS = 2;
     private int $numerator;
     private int $denominator;
 
@@ -30,9 +32,7 @@ class Fraction
         preg_match(self::FRACTION_ELEMENTS, $fraction, $matches);
         $numerator = self::cleanNumber($matches[self::FRACTION_FIRST_INDEX_OF], self::NUMERATOR_INDEX);
         $denominator = self::cleanNumber($matches[self::FRACTION_FIRST_INDEX_OF], self::DENOMINATOR_INDEX);
-        if ($numerator < 0 && $denominator < 0 || $numerator === 0 ||  $denominator === 0) {
-            throw new InvalidArgumentException('Both numerator and denominator can not be negative');
-        }
+        self::throwExceptionIfBothNegativeOrZero($numerator, $denominator);
         return new self($numerator, $denominator);
     }
 
@@ -46,10 +46,32 @@ class Fraction
     private static function cleanNumber(string $fraction, int $fractionIndex): int
     {
         $fractionNumber = explode(self::FRACTION_SEPARATOR, $fraction);
-        if (count($fractionNumber) !== 2) {
+        self::throwExceptionIfNotTwoNumbers($fractionNumber);
+        return (int) $fractionNumber[$fractionIndex];
+    }
+
+    private static function throwExceptionIfBothNegativeOrZero(int $numerator, int $denominator): void
+    {
+        if (self::areBothNegativeNumbers($numerator, $denominator) || self::isAnyNumberZero($numerator, $denominator)) {
+            throw new InvalidArgumentException('Both numerator and denominator can not be negative');
+        }
+    }
+
+    private static function areBothNegativeNumbers(int $numerator, int $denominator): bool
+    {
+        return $numerator < self::INVALID_ZERO_VALUE && $denominator < self::INVALID_ZERO_VALUE;
+    }
+
+    private static function isAnyNumberZero(int $numerator, int $denominator): bool
+    {
+        return $numerator === self::INVALID_ZERO_VALUE || $denominator === self::INVALID_ZERO_VALUE;
+    }
+
+    private static function throwExceptionIfNotTwoNumbers($fractionNumber): void
+    {
+        if (count($fractionNumber) !== self::NUMBER_ELEMENTS_OF_FRACTIONS) {
             throw new InvalidArgumentException('The Fraction has to be valid');
         }
-        return (int) $fractionNumber[$fractionIndex];
     }
 
     public function numerator(): int
