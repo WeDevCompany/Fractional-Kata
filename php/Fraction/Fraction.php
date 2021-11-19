@@ -8,7 +8,7 @@ use InvalidArgumentException;
 
 class Fraction
 {
-    private const VALID_FRACTION_FORMAT = '/{-?[0-9]+\/-?[0-9]+}/m';
+    private const VALID_FRACTION_FORMAT = '/^{-?[0-9]+\/-?[0-9]+}$/m';
     private const FRACTION_ELEMENTS = '/(?:-?[1-9][0-9]*|0)(?:\/-?[1-9][0-9]*)?/m';
     private const FRACTION_SEPARATOR = '/';
     private const NUMERATOR_INDEX = 0;
@@ -30,7 +30,7 @@ class Fraction
         preg_match(self::FRACTION_ELEMENTS, $fraction, $matches);
         $numerator = self::cleanNumber($matches[self::FRACTION_FIRST_INDEX_OF], self::NUMERATOR_INDEX);
         $denominator = self::cleanNumber($matches[self::FRACTION_FIRST_INDEX_OF], self::DENOMINATOR_INDEX);
-        if ($numerator < 0 && $denominator < 0) {
+        if ($numerator < 0 && $denominator < 0 || $numerator === 0 ||  $denominator === 0) {
             throw new InvalidArgumentException('Both numerator and denominator can not be negative');
         }
         return new self($numerator, $denominator);

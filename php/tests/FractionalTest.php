@@ -38,9 +38,20 @@ class FractionalTest extends TestCase
         yield ['{a3/0}'];
         yield ['{0/0a}'];
         yield ['{0/a0}'];
+        yield ['{0/0}'];
+        yield ['{0/3}'];
         yield ['{-3/0}'];
         yield ['{-1/-2}'];
         yield ['{-01/-02}'];
+        yield [' { 1 / -2 }'];
+        yield [' {1/-2} {1/-2} '];
+        yield ['{1/-2}{1/-2}'];
+        yield ['{1/-2} {1/-2}'];
+        yield ['1/-2'];
+        yield ['1/2'];
+        yield ['12'];
+        yield ['{1/-3-3}'];
+        yield ['{-1-1/3}'];
     }
 
     /** @test */
@@ -88,5 +99,24 @@ class FractionalTest extends TestCase
         $this->assertEquals($denominator, Fraction::fractionFromString($validFraction)->denominator());
     }
 
+    /**
+     * @return iterator<string>
+     */
+    public function createValidArguments(): iterator
+    {
+        yield ['{1/2}', 1, 2];
+        yield ['{-1/2}', -1, 2];
+        yield ['{1/-2}', 1, -2];
+    }
+
+    /**
+     * @test
+     * @dataProvider createValidArguments
+     */
+    public function foo(string $validFraction, int $numerator, int $denominator)
+    {
+        $this->assertEquals($numerator, Fraction::fractionFromString($validFraction)->numerator());
+        $this->assertEquals($denominator, Fraction::fractionFromString($validFraction)->denominator());
+    }
 
 }
