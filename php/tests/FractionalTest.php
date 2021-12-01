@@ -112,4 +112,29 @@ class FractionalTest extends TestCase
         $this->assertEquals($output, Fraction::sum($fraction, $fraction1)->resolve());
     }
 
+    /**
+     * @test
+     */
+    public function should_sum_fraction()
+    {
+        $fraction = Fraction::fractionFromString('{2/3}');
+        $fraction1 = Fraction::fractionFromString('{4/5}');
+        $output = Fraction::fractionFromString('{22/15}')->resolve();
+
+        $this->assertEquals($output, $fraction->sume($fraction1)->resolve());
+    }
+
+    /**
+     * @test
+     */
+    public function should_subtract_four_fraction_with_different_denominator()
+    {
+        $fraction = Fraction::fractionFromString('{2/3}'); // 1/15
+        $fraction1 = Fraction::fractionFromString('{4/5}');
+        $output = Fraction::fractionFromString('{2/15}')->resolve();
+
+        $this->markTestIncomplete('This test has not been implemented yet.');
+        $this->assertEquals($output, Fraction::subtract($fraction, $fraction1)->resolve());
+    }
+
 }

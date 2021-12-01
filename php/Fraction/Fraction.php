@@ -45,6 +45,25 @@ class Fraction
         return self::fractionFromFloat($summation);
     }
 
+    public function sume(self $fraction): self
+    {
+        $summation = $this->resolve() + $fraction->resolve();
+        return self::fractionFromFloat($summation);
+    }
+
+    /**
+     * @parameter $fractionList List<Fraction>
+     */
+    public static function subtract(...$fractionList): self
+    {
+        $denominatorList = array_map(function ($fraction) { return $fraction->resolve();} , $fractionList);
+        $maxDenominator = max($denominatorList);
+
+        $subtraction = array_reduce($fractionList, fn($acumulate, $currentFraction) => $acumulate -= $currentFraction->resolve());
+        var_dump($subtraction);
+        return self::fractionFromFloat($subtraction);
+    }
+
     /**
      * https://stackoverflow.com/questions/14330713/converting-float-decimal-to-fraction
      */
