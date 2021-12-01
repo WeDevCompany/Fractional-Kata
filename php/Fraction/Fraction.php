@@ -112,11 +112,6 @@ class Fraction
         return $this->denominator;
     }
 
-    public function __toString(): string
-    {
-        return sprintf('{%d/%d}', $this->numerator, $this->denominator);
-    }
-
     public function resolve(): float
     {
         return $this->numerator / $this->denominator;

@@ -72,7 +72,6 @@ class FractionalTest extends TestCase
     {
         $this->assertEquals($numerator, Fraction::fractionFromString($validFraction)->numerator());
         $this->assertEquals($denominator, Fraction::fractionFromString($validFraction)->denominator());
-        $this->assertEquals($validFraction, Fraction::fractionFromString($validFraction));
     }
 
      /**
