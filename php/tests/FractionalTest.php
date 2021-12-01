@@ -75,14 +75,6 @@ class FractionalTest extends TestCase
         $this->assertEquals($validFraction, Fraction::fractionFromString($validFraction));
     }
 
-    /**
-     * @test
-     */
-    public function a_fraction_can_be_resolve()
-    {
-        $this->assertEquals(0.5, Fraction::fractionFromString('{1/2}')->resolve());
-    }
-
      /**
       * @test
       */
