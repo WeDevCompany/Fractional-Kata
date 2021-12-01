@@ -84,17 +84,16 @@ class FractionalTest extends TestCase
     }
 
      /**
-     * @test
-     */
+      * @test
+      */
     public function should_sum_two_fraction_with_same_denominator()
     {
         $fraction = Fraction::fractionFromString('{1/2}');
         $fraction2 = Fraction::fractionFromString('{3/2}');
-        $output = '{4/2}';
+        $output = Fraction::fractionFromString('{4/2}')->resolve();
 
-        $this->assertEquals($output, Fraction::Sume($fraction, $fraction2));
+        $this->assertSame($output, Fraction::Sume($fraction, $fraction2)->resolve());
     }
-
 
     /**
      * @test
@@ -105,9 +104,9 @@ class FractionalTest extends TestCase
         $fraction1 = Fraction::fractionFromString('{1/2}');
         $fraction2 = Fraction::fractionFromString('{3/2}');
         $fraction3 = Fraction::fractionFromString('{3/2}');
-        $output = '{8/2}';
+        $output = Fraction::fractionFromString('{8/2}')->resolve();
 
-        $this->assertEquals($output, Fraction::Sume($fraction, $fraction1, $fraction2, $fraction3));
+        $this->assertEquals($output, Fraction::Sume($fraction, $fraction1, $fraction2, $fraction3)->resolve());
     }
 
 }
