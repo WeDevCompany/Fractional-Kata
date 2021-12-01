@@ -36,15 +36,6 @@ class Fraction
         return new self($numerator, $denominator);
     }
 
-    /**
-     * @parameter $fractionList List<Fraction>
-     */
-    public static function sum(...$fractionList): self
-    {
-        $summation = array_reduce($fractionList, fn($acumulate, $currentFraction) => $acumulate += $currentFraction->resolve());
-        return self::fractionFromFloat($summation);
-    }
-
     public function sume(self $fraction): self
     {
         $summation = $this->resolve() + $fraction->resolve();
