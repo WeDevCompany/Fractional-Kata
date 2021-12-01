@@ -41,12 +41,27 @@ class Fraction
      */
     public static function sume(...$fractionList): self
     {
-        $denominatorList = array_map(function ($fraction) { return $fraction->denominator;} , $fractionList);
-        $maxDenominator = max($denominatorList);
+        $summation = array_reduce($fractionList, fn($acumulate, $currentFraction) => $acumulate += $currentFraction->resolve());
+        return self::fractionFromFloat($summation);
+    }
 
-        $numerator = array_reduce($fractionList, fn($acumulate, $currentFraction) => $acumulate += $currentFraction->numerator());
+    /**
+     * https://stackoverflow.com/questions/14330713/converting-float-decimal-to-fraction
+     */
+    private static function fractionFromFloat(float $n): self {
+        $tolerance = 1.e-6;
+        $h1=1; $h2=0;
+        $k1=0; $k2=1;
+        $b = 1/$n;
+        do {
+            $b = 1/$b;
+            $a = floor($b);
+            $aux = $h1; $h1 = $a*$h1+$h2; $h2 = $aux;
+            $aux = $k1; $k1 = $a*$k1+$k2; $k2 = $aux;
+            $b = $b-$a;
+        } while (abs($n-$h1/$k1) > $n*$tolerance );
 
-        return new self($numerator, $maxDenominator);
+        return new self((int) $h1,(int) $k1);
     }
 
     private static function throwExceptionIfInvalidFraction(string $fraction)
