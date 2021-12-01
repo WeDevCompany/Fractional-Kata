@@ -36,7 +36,7 @@ class Fraction
         return new self($numerator, $denominator);
     }
 
-    public function sume(self $fraction): self
+    public function sum(self $fraction): self
     {
         $summation = $this->resolve() + $fraction->resolve();
         return self::fractionFromFloat($summation);

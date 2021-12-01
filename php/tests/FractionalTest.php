@@ -83,7 +83,7 @@ class FractionalTest extends TestCase
         $fraction2 = Fraction::fractionFromString('{3/2}');
         $output = Fraction::fractionFromString('{4/2}')->resolve();
 
-        $this->assertSame($output, $fraction->sume($fraction2)->resolve());
+        $this->assertSame($output, $fraction->sum($fraction2)->resolve());
     }
 
     /**
@@ -97,7 +97,7 @@ class FractionalTest extends TestCase
         $fraction3 = Fraction::fractionFromString('{3/2}');
         $output = Fraction::fractionFromString('{8/2}')->resolve();
 
-        $this->assertEquals($output, $fraction->sume($fraction1)->sume($fraction2)->sume($fraction3)->resolve());
+        $this->assertEquals($output, $fraction->sum($fraction1)->sum($fraction2)->sum($fraction3)->resolve());
     }
 
     /**
@@ -109,7 +109,7 @@ class FractionalTest extends TestCase
         $fraction1 = Fraction::fractionFromString('{4/5}');
         $output = Fraction::fractionFromString('{22/15}')->resolve();
 
-        $this->assertEquals($output, $fraction->sume($fraction1)->resolve());
+        $this->assertEquals($output, $fraction->sum($fraction1)->resolve());
     }
 
     /**
