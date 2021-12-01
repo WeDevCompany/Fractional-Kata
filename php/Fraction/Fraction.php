@@ -39,7 +39,7 @@ class Fraction
     /**
      * @parameter $fractionList List<Fraction>
      */
-    public static function sume(...$fractionList): self
+    public static function sum(...$fractionList): self
     {
         $summation = array_reduce($fractionList, fn($acumulate, $currentFraction) => $acumulate += $currentFraction->resolve());
         return self::fractionFromFloat($summation);
