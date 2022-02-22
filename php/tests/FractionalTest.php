@@ -13,7 +13,7 @@ class FractionalTest extends TestCase
      * @test
      * @dataProvider createInvalidArguments
      */
-    public function should_not_create_fraction_with_invalid_input(string $invalidArguments)
+    public function should_not_create_fraction_with_invalid_input(string $invalidArguments): void
     {
         $this->expectException(InvalidArgumentException::class);
         Fraction::fractionFromString($invalidArguments);
@@ -68,7 +68,7 @@ class FractionalTest extends TestCase
      * @test
      * @dataProvider createValidArguments
      */
-    public function should_create_fraction_with_valid_input(string $validFraction, int $numerator, int $denominator)
+    public function should_create_fraction_with_valid_input(string $validFraction, int $numerator, int $denominator): void
     {
         $this->assertEquals($numerator, Fraction::fractionFromString($validFraction)->numerator());
         $this->assertEquals($denominator, Fraction::fractionFromString($validFraction)->denominator());
@@ -77,7 +77,7 @@ class FractionalTest extends TestCase
      /**
       * @test
       */
-    public function should_sum_two_fraction_with_same_denominator()
+    public function should_sum_two_fraction_with_same_denominator(): void
     {
         $fraction = Fraction::fractionFromString('{1/2}');
         $fraction2 = Fraction::fractionFromString('{3/2}');
@@ -89,7 +89,7 @@ class FractionalTest extends TestCase
     /**
      * @test
      */
-    public function should_sum_four_fraction_with_same_denominator()
+    public function should_sum_four_fraction_with_same_denominator(): void
     {
         $fraction = Fraction::fractionFromString('{1/2}');
         $fraction1 = Fraction::fractionFromString('{1/2}');
@@ -103,7 +103,7 @@ class FractionalTest extends TestCase
     /**
      * @test
      */
-    public function should_sum_four_fraction_with_different_denominator()
+    public function should_sum_four_fraction_with_different_denominator(): void
     {
         $fraction = Fraction::fractionFromString('{2/3}');
         $fraction1 = Fraction::fractionFromString('{4/5}');
@@ -115,7 +115,7 @@ class FractionalTest extends TestCase
     /**
      * @test
      */
-    public function should_subtract_four_fraction_with_different_denominator()
+    public function should_subtract_four_fraction_with_different_denominator(): void
     {
         $fraction = Fraction::fractionFromString('{2/3}'); // 1/15
         $fraction1 = Fraction::fractionFromString('{4/5}');
